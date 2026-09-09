@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "./CartSlice";
 import "./ProductList.css";
 import CartItem from "./CartItem";
@@ -9,8 +9,18 @@ function ProductList({ onHomeClick }) {
   const [showCart, setShowCart] = useState(false);
   const [showPlants, setShowPlants] = useState(false);
 
-  // State management to track products added to the cart
+  // State management to track products added to the cart locally for button styling
   const [addedToCart, setAddedToCart] = useState({});
+
+  // Access the Redux store to get current cart items
+  const cartItems = useSelector((state) => state.cart.items);
+
+  // Calculate the total quantity of all items currently in the cart
+  const calculateTotalQuantity = () => {
+    return cartItems
+      ? cartItems.reduce((total, item) => total + item.quantity, 0)
+      : 0;
+  };
 
   const plantsArray = [
     {
@@ -260,7 +270,7 @@ function ProductList({ onHomeClick }) {
     color: "#fff!important",
     padding: "15px",
     display: "flex",
-    justifyContent: "space-between",
+    justify: "space-between",
     alignItems: "center",
     fontSize: "20px",
   };
@@ -299,7 +309,7 @@ function ProductList({ onHomeClick }) {
     setShowCart(false);
   };
 
-  // Add to Cart handler dispatching to Redux and updating local UI state
+  // Dispatch selected plant details to Redux store
   const handleAddToCart = (product) => {
     dispatch(addItem(product));
     setAddedToCart((prevState) => ({
@@ -354,6 +364,10 @@ function ProductList({ onHomeClick }) {
                     id="mainIconPathAttribute"
                   ></path>
                 </svg>
+                {/* Dynamic total quantity badge displayed on the cart icon */}
+                <span className="cart_quantity_count">
+                  {calculateTotalQuantity()}
+                </span>
               </h1>
             </a>
           </div>
