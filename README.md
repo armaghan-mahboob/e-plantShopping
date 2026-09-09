@@ -1,6 +1,6 @@
-# 🌿 Paradise Nursery - Shopping Cart Web Application
+# 🌿 Paradise Nursery - e-plantShopping Web Application
 
-Paradise Nursery is a React-based e-commerce application designed for browsing and purchasing indoor plants. The application utilizes **Redux Toolkit** for efficient global state management, allowing real-time cart updates, item subtotal calculations, continuous shopping capabilities, and seamless navigation.
+Paradise Nursery (`e-plantShopping`) is a React-based e-commerce application designed for browsing and purchasing indoor plants. The application utilizes **Redux Toolkit** for efficient global state management, allowing real-time cart updates, item subtotal calculations, continuous shopping capabilities, and seamless navigation.
 
 ---
 
